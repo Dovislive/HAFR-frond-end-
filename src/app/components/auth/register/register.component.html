@@ -1,0 +1,34 @@
+<div class="auth">
+  <div class="auth__logo">
+    <div class="auth__logo-img"></div>
+    <div class="auth__logo-text">Squibler</div>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth__form">
+    <div class="gsign">Sign up with Google</div>
+    <div class="auth__form-title"> Or sign up with your email address:</div>
+    <input type="email" name="email" formControlName="email" class="auth__input" placeholder="Email Address" [ngClass]="{ 'is-invalid': submitted && registerFormState.email.errors }"
+    />
+    <input type="email" name="confirmEmail" formControlName="confirmEmail" class="auth__input" placeholder="Confirm Email Address"
+      [ngClass]="{ 'is-invalid': submitted && registerFormState.confirmEmail.errors }" />
+    <div *ngIf="submitted && registerForm.value.confirmEmail !== registerForm.value.email" class="invalid-feedback">
+      <div>Email does not match</div>
+    </div>
+
+    <input type="password" name="password" formControlName="password" class="auth__input" placeholder="Create Password" [ngClass]="{ 'is-invalid': submitted && registerFormState.password.errors }"
+    />
+    <div class="auth__agree">
+      By clicking on Sign Up, you agree to Squibler`s
+      <br>
+      <a>Terms of Use</a> and
+      <a>Privacy Policy</a>.
+    </div>
+    <div *ngIf="registerError">
+      {{registerError}}
+    </div>
+    <div class="auth__signup-btn">
+      <button [disabled]="loading" class="button button_arrow button_green">Sign up</button>
+    </div>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </form>
+</div>

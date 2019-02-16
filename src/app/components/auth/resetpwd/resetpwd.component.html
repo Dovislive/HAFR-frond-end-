@@ -1,0 +1,77 @@
+<div class="auth">
+  <div class="auth__logo">
+    <div class="auth__logo-img"></div>
+    <div class="auth__logo-text">Squibler</div>
+  </div>
+  <div *ngIf="!resetPasswordForm">
+    <form [formGroup]="forgetPasswordForm" (ngSubmit)="onSubmit()" class="auth__form" *ngIf="!submittedView">
+      <div class="auth__form-title">Password Reset</div>
+      <div class="auth__form-text">
+        Enter the email address associated with your Squbler account and a password reset will be sent to your email address.
+      </div>
+      <input type="email" name="email" formControlName="email" class="auth__input" placeholder="Email address" [ngClass]="{ 'is-invalid': submitted && resetPasswordFormState.email.errors }"
+      />
+      <div *ngIf="submitted && resetPasswordFormState.email.errors" class="invalid-feedback">
+        <div *ngIf="resetPasswordFormState.email.errors.email">Email is required</div>
+      </div>
+      <div class="auth__signup-btn">
+        <button [disabled]="loading" class="button button_green">Reset Password</button>
+      </div>
+      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+    </form>
+    <div class="auth__form" *ngIf="submittedView">
+      <div class="auth__form-title">Password Reset Sent</div>
+      <div class="auth__reset-text">
+        A pasword reset has been sent to
+        <br>
+        <strong>{{email}}</strong>
+      </div>
+      <div class="auth__reset-text">
+        Please check your email for further instructions.
+      </div>
+      <div class="auth__signup-btn">
+        <div (click)="sendEmailAgain()" class="button button_green">Send email again</div>
+      </div>
+      <div class="auth__reset-text">
+        Still having issues?
+        <br> Contact
+        <a href="mailto:support@squibler.io">support@squibler.io</a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="resetPasswordForm">
+    <form [formGroup]="confirmCodeForm" (ngSubmit)="sentCode()" class="auth__form" *ngIf="!submittedView">
+      <div class="auth__form-title">Password Reset</div>
+      <div class="auth__form-text">
+        Paste the code we sent you to the e-mail
+      </div>
+      <input type="text" name="confirmCode" formControlName="confirmCode" class="auth__input" placeholder="Confirm Code" [ngClass]="{ 'is-invalid': submitted && confirmCodeFormState.confirmCode.errors }"
+      />
+      <div *ngIf="submitted && confirmCodeFormState.confirmCode.errors" class="invalid-feedback">
+        <div *ngIf="confirmCodeFormState.confirmCode.errors.confirmCode">confirmCode is required</div>
+      </div>
+      <input type="password" name="password" formControlName="password" class="auth__input" placeholder="New Password" [ngClass]="{ 'is-invalid': submitted && confirmCodeFormState.password.errors }"
+      />
+      <div *ngIf="submitted && confirmCodeFormState.password.errors" class="invalid-feedback">
+        <div *ngIf="confirmCodeFormState.password.errors.password">New password is required</div>
+      </div>
+      <input type="password" name="confirmPassword" formControlName="confirmPassword" class="auth__input" placeholder="Confirm Password"
+        [ngClass]="{ 'is-invalid': submitted && confirmCodeFormState.confirmPassword.errors }" />
+      <div *ngIf="submitted && confirmCodeFormState.confirmPassword.errors" class="invalid-feedback">
+        <div *ngIf="confirmCodeFormState.confirmPassword.errors.confirmPassword">Confirm password is required</div>
+      </div>
+      <div class="auth__signup-btn">
+        <div *ngIf="this.confirmCodeError">
+          {{this.confirmCodeError}}
+        </div>
+        <div *ngIf="confirmCodeSuccess">
+          {{this.confirmCodeSuccess}}
+        </div>
+        <button [disabled]="loading" class="button button_green">Submit Code</button>
+      </div>
+      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+    </form>
+  </div>
+</div>

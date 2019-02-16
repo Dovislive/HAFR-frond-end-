@@ -1,0 +1,141 @@
+.auth {
+  width: 100vw;
+  height: 100vh;
+  background-color: $violet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+  &__logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url('assets/images/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px 54px;
+    background-color: $logobg;
+  }
+  &__logo-text {
+    font-family: Montserrat;
+    font-weight: 500;
+    color: $white;
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  &__form {
+    margin-top: 37px;
+    background-color: $white;
+    padding: 40px 68px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__form-title {
+    color: $textDark;
+    width: 100%;
+    text-align: center;
+    margin-top: 35px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__input {
+    margin-top: 25px;
+    padding: 15px 0;
+    font-size: 18px;
+    border: 0;
+    border-bottom: 1px solid #4e4e4e;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__actions {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  &__login-btn {
+    height: 46px;
+    width: 235px;
+  }
+  &__signup-btn {
+    height: 46px;
+    width: 100%;
+    margin-top: 30px;
+  }
+  &__forgot {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #0362ac;
+    }
+  }
+  &__sign-up {
+    font-size: 14px;
+    text-align: center;
+    color: #7a7a7a;
+    margin-top: 15px;
+    a {
+      margin-left: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #0362ac;
+    }
+  }
+  &__agree {
+    font-size: 14px;
+    text-align: left;
+    color: #7a7a7a;
+    margin-top: 30px;
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #0362ac;
+    }
+  }
+  &__privacy {
+    font-size: 14px;
+    text-align: center;
+    color: #7a7a7a;
+    margin-top: 30px;
+    padding: 0 10px;
+    a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #0362ac;
+    }
+  }
+  &__reset-text {
+    color: #525252;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
+    a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #0362ac;
+    }
+  }
+  &__form-text {
+    font-size: 16px;
+    text-align: left;
+    color: #525252;
+    margin-top: 30px;
+    font-weight: 300;
+  }
+}

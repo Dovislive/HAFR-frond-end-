@@ -1,0 +1,19 @@
+<div class="settings">
+  <app-header [title]="title"></app-header>
+  <div class="content" [ngClass]="{'content_header-title' : title }">
+    <div class="settings__notification" [ngClass]="{'active': success}">Profile updated successfully</div>
+    <div class="container">
+      <tabs>
+        <tab tabTitle="My Profile">
+<!--          <app-profile-settings style="width: 100%;" (profileChanged)="onSuccess()"></app-profile-settings>-->
+        </tab>
+        <tab tabTitle="Billing Information">
+          Coming soon
+        </tab>
+        <tab tabTitle="Sequrity & Privacy">
+          Coming soon
+        </tab>
+      </tabs>
+    </div>
+  </div>
+</div>

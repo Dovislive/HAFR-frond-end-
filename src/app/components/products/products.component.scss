@@ -1,0 +1,17 @@
+.settings {
+  &__notification {
+    color: white;
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #63c379;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &.active {
+      height: 46px;
+    }
+  }
+}

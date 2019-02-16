@@ -1,0 +1,40 @@
+<div class="auth">
+  <div class="auth__logo">
+    <div class="auth__logo-img"></div>
+    <div class="auth__logo-text">Squibler</div>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth__form">
+    <div class="gsign ">Sign in with Google</div>
+    <div class="auth__form-title "> Or login with your email address</div>
+    <input type="email" name="email" formControlName="email" class="auth__input" placeholder="Email Address" [ngClass]="{'is-invalid': submitted && loginFormState.email.errors }"
+    />
+    <input type="password" name="password" formControlName="password" class="auth__input" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && loginFormState.password.errors }"
+    />
+    <div class="auth__actions ">
+      <label class="checkbox ">Remember me
+        <input type="checkbox ">
+        <span class="checkmark "></span>
+      </label>
+      <div class="auth__login-btn ">
+        <button class="button button_arrow button_green">Sign in</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+      </div>
+    </div>
+    <div class=" auth__forgot ">
+      <a routerLink="/forgot-password">Forgot your password?</a>
+    </div>
+    <div class="auth__sign-up ">
+      Don`t have an account?
+      <a routerLink="/register">Sign up</a>
+    </div>
+    <div *ngIf="loginError">
+      {{loginError}}
+    </div>
+    <div class="auth__privacy ">
+      If you click “Sign i with Google” and are not a Squibler user, you will be registered and you agree to Squibler’s
+      <a>Terms of Use</a> and
+      <a>Privacy Policy</a>.
+    </div>
+  </form>
+</div>

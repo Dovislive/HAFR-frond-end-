@@ -1,0 +1,14 @@
+<div class="header" [ngClass]="{'header_title' : title }">
+  <div class="header__top">
+    <div class="header__logo">
+      <div class="header__logo-img"></div>
+      <div class="header__logo-text">Squibler</div>
+    </div>
+    <div class="header__user">User</div>
+  </div>
+  <div *ngIf="title" class="header__title">
+    <div class="container">
+      {{title}}
+    </div>
+  </div>
+</div>
