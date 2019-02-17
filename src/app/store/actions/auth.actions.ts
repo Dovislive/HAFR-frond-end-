@@ -10,9 +10,25 @@ export enum AuthActionTypes {
     SIGNUP_FAILURE = '[Auth] Signup Failure',
     LOGOUT = '[Auth] Logout',
     GET_STATUS = '[Auth] GetStatus',
-    ADD_PRODUCT = '[Auth] AddProduct',  
+    GET_PRODUCTS = '[Auth] GetProducts',
+    GET_PRODUCTS_SUCCESS = '[Auth] GetProducts Success',
+    GET_PRODUCTS_FAILURE = '[Auth] GetProducts Failure',
+    ADD_PRODUCT = '[Auth] AddProduct',
     ADD_PRODUCT_SUCCESS = '[Auth] AddProduct Success',
-    ADD_PRODUCT_FAILURE = '[Auth] AddProduct Failure',    
+    ADD_PRODUCT_FAILURE = '[Auth] AddProduct Failure',
+}
+
+export class GetProducts implements Action {
+    readonly type = AuthActionTypes.GET_PRODUCTS;
+    constructor(public payload: any) { }
+}
+export class GetProductsSuccess implements Action {
+    readonly type = AuthActionTypes.GET_PRODUCTS_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class GetProductsFailure implements Action {
+    readonly type = AuthActionTypes.GET_PRODUCTS_FAILURE;
+    constructor(public payload: any) { }
 }
 
 export class AddProduct implements Action {
@@ -26,7 +42,7 @@ export class AddProductSuccess implements Action {
 export class AddProductFailure implements Action {
     readonly type = AuthActionTypes.ADD_PRODUCT_FAILURE;
     constructor(public payload: any) { }
-}    
+}
 export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGIN;
     constructor(public payload: any) { }
@@ -72,5 +88,8 @@ export type All =
     | SignUp
     | SignUpSuccess
     | SignUpFailure
+    | GetProducts
+    | GetProductsSuccess
+    | GetProductsFailure
     | LogOut
     | GetStatus;

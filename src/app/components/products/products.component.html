@@ -3,17 +3,19 @@
   <div class="content" [ngClass]="{'content_header-title' : title }">
     <div class="settings__notification" [ngClass]="{'active': success}">Profile updated successfully</div>
     <div class="container">
-            <form [formGroup]="productsForm" (ngSubmit)="onSubmit()" class="auth__form">
-                <input type="text" name="name" formControlName="name" class="auth__input" placeholder="Название продукта" 
-                 />
-                <input type="text" name="img" formControlName="img" class="auth__input" placeholder="Фото продукта" 
-                 />
-                <input type="text" name="descr" formControlName="descr" class="auth__input" placeholder="Описание продукта" 
-                 />
-                <input type="text" name="prize" formControlName="prize" class="auth__input" placeholder="Цена продукта" 
-                />
-                <button class="button button_arrow button_green">Сохранить</button>
-            </form>   
+      <form [formGroup]="productsForm" (ngSubmit)="onSubmit()" class="auth__form">
+        <input type="text" name="name" formControlName="name" class="auth__input" placeholder="Название продукта" />
+        <input type="text" name="img" formControlName="img" class="auth__input" placeholder="Фото продукта" />
+        <input type="text" name="descr" formControlName="descr" class="auth__input" placeholder="Описание продукта" />
+        <input type="text" name="prize" formControlName="prize" class="auth__input" placeholder="Цена продукта" />
+        <button class="button button_arrow button_green">Сохранить</button>
+      </form>
+      <div *ngFor="let product of products">
+        product name : {{product.name}}
+        <br> product img : {{product.img}}
+      </div>
     </div>
+
   </div>
+
 </div>

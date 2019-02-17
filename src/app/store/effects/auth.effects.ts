@@ -18,6 +18,9 @@ import {
     AddProduct,
     AddProductSuccess,
     AddProductFailure,
+    GetProducts,
+    GetProductsSuccess,
+    GetProductsFailure
 } from '../actions/auth.actions';
 
 
@@ -61,10 +64,10 @@ export class AuthEffects {
     LogInFailure: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGIN_FAILURE)
     );
-    
-    
-    
-@Effect()
+
+
+
+    @Effect()
     AddProduct: Observable<any> = this.actions
         .ofType(AuthActionTypes.ADD_PRODUCT)
         .map((action: AddProduct) => action.payload)
@@ -73,7 +76,7 @@ export class AuthEffects {
             return this.authService.AddProduct(payload)    //   .pipe(first())
                 .map((product) => {
                     console.log(37, product);
-                    return new AddProductSuccess({ product:product });
+                    return new AddProductSuccess({ product: product });
                 })
                 .catch((error) => {
                     console.log(41, error);
@@ -96,62 +99,38 @@ export class AuthEffects {
         ofType(AuthActionTypes.ADD_PRODUCT_FAILURE)
     );
 
-    // @Effect()
-    // SignUp: Observable<any> = this.actions
-    //     .ofType(AuthActionTypes.SIGNUP)
-    //     .map((action: SignUp) => action.payload)
-    //     .switchMap(payload => {
-    //         return this.authService.signUp(payload.email, payload.password)
-    //             .map((user) => {
-    //                 return new SignUpSuccess({ token: user.token, email: payload.email });
-    //             })
-    //             .catch((error) => {
-    //                 return Observable.of(new SignUpFailure({ error: error }));
-    //             });
-    //     });
 
 
-    // @Effect()
-    // SignUp: Observable<any> = this.actions
-    //     .ofType(AuthActionTypes.SIGNUP)
-    //     .map((action: SignUp) => action.payload)
-    //     .switchMap(payload => {
-    //         return this.authService.signUp(payload.email, payload.password)
-    //             .map((user) => {
-    //                 return new SignUpSuccess({ token: user.token, email: payload.email });
-    //             })
-    //             .catch((error) => {
-    //                 return Observable.of(new SignUpFailure({ error: error }));
-    //             });
-    //     });
+    @Effect()
+    GetProducts: Observable<any> = this.actions
+        .ofType(AuthActionTypes.GET_PRODUCTS)
+        .map((action: GetProducts) => action.payload)
+        .switchMap(payload => {
+            console.log(33, payload);
+            return this.authService.getProducts(payload)    //   .pipe(first())
+                .map((product) => {
+                    console.log(37, product);
+                    return new GetProductsSuccess(product);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new GetProductsFailure({ error: error }));
+                });
+        });
 
-    // @Effect({ dispatch: false })
-    // SignUpSuccess: Observable<any> = this.actions.pipe(
-    //     ofType(AuthActionTypes.SIGNUP_SUCCESS),
-    //     tap((user) => {
-    //         localStorage.setItem('token', user.payload.token);
-    //         this.router.navigateByUrl('/');
-    //     })
-    // );
 
-    // @Effect({ dispatch: false })
-    // SignUpFailure: Observable<any> = this.actions.pipe(
-    //     ofType(AuthActionTypes.SIGNUP_FAILURE)
-    // );
+    @Effect({ dispatch: false })
+    GetProductsSuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_PRODUCT_SUCCESS),
+        tap((product) => {
+            localStorage.setItem('token', product.payload.token);
+            this.router.navigateByUrl('/');
+        })
+    );
 
-    // @Effect({ dispatch: false })
-    // public LogOut: Observable<any> = this.actions.pipe(
-    //     ofType(AuthActionTypes.LOGOUT),
-    //     tap((user) => {
-    //         localStorage.removeItem('token');
-    //     })
-    // );
-
-    // @Effect({ dispatch: false })
-    // GetStatus: Observable<any> = this.actions
-    //     .ofType(AuthActionTypes.GET_STATUS)
-    //     .switchMap(payload => {
-    //         return this.authService.getStatus();
-    //     });
+    @Effect({ dispatch: false })
+    GetProductsFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_PRODUCT_FAILURE)
+    );
 
 }

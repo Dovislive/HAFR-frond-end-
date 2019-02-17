@@ -26,15 +26,27 @@ export class AuthenticationService {
         }),
     );
   }
-      public AddProduct(params) {
+  public AddProduct(params) {
     // console.log(14, this.http.post<any>(environment.backUrl + '/login', { email, password }).pipe());
-    return this.http.post<any>('localhost:8000/products', { name:params.name, img:params.img, descr:params.descr, prize:params.prize })
+    return this.http.post<any>('localhost:8000/products', { name: params.name, img: params.img, descr: params.descr, prize: params.prize })
       .pipe(
         map((user) => {
           return user;
         }),
     );
   }
+
+  public getProducts(params) {
+    // console.log(14, this.http.post<any>(environment.backUrl + '/login', { email, password }).pipe());
+    return this.http.get<any>('http://localhost:8000/products')
+      .pipe(
+        map((products) => {
+          return products;
+        }),
+    );
+  }
+
+
   public logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
