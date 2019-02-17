@@ -89,8 +89,8 @@ export class AuthEffects {
     AddProductSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.ADD_PRODUCT_SUCCESS),
         tap((product) => {
-//            localStorage.setItem('token', product.payload.token);
-//            this.router.navigateByUrl('/');
+            // localStorage.setItem('token', product.payload.token);
+            // this.router.navigateByUrl('/');
         })
     );
 
@@ -123,8 +123,8 @@ export class AuthEffects {
     GetProductsSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.ADD_PRODUCT_SUCCESS),
         tap((product) => {
-            localStorage.setItem('token', product.payload.token);
-            this.router.navigateByUrl('/');
+            // localStorage.setItem('token', product.payload.token);
+            // this.router.navigateByUrl('/');
         })
     );
 
