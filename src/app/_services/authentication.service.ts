@@ -27,14 +27,17 @@ export class AuthenticationService {
     );
   }
   public AddProduct(params) {
-    // console.log(14, this.http.post<any>(environment.backUrl + '/login', { email, password }).pipe());
       console.log(30, params);
     return this.http.post<any>('http://localhost:8000/products', { name: params.name, img: params.img, descr: params.descr, prize: params.prize })
-      .pipe(
-        map((user) => {
-          return user;
-        }),
-    );
+      .map(product => {
+        console.log(34,product);
+    })
+//      .pipe(
+//        map((user) => {
+//            console.log(35, user);
+//          return user;
+//        }),
+//    );
   }
 
   public getProducts(params) {
