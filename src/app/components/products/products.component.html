@@ -1,5 +1,6 @@
 <div class="settings">
-  <app-header [title]="title"></app-header>
+  <app-header [title]="title">
+  </app-header>
   <div class="content" [ngClass]="{'content_header-title' : title }">
     <div class="settings__notification" [ngClass]="{'active': success}">Profile updated successfully</div>
     <div class="container">
@@ -11,11 +12,19 @@
         <button class="button button_arrow button_green">Сохранить</button>
       </form>
       <div *ngFor="let product of products">
-        product name : {{product.name}}
-        <br> product img : {{product.img}}
+          <div class="row">
+              <div class="col-sm-3 product-card">product name : {{product.name}}</div>
+               <div class="col-sm-3 product-card">product img : {{product.img}}</div>
+               <div class="col-sm-3 product-card">product descr : {{product.descr}}</div>
+               <div class="col-sm-3 product-card">product prize : {{product.prize}}</div>
+          </div>     
+               <br>
+               <div class="row justify-content-center">
+               <button class="col-sm-3 button-delete" (click)="deleteProduct(product._id)">DELETE</button>
+              </div>
+          
       </div>
     </div>
-
   </div>
 
 </div>

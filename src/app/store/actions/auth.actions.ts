@@ -16,6 +16,9 @@ export enum AuthActionTypes {
     ADD_PRODUCT = '[Auth] AddProduct',
     ADD_PRODUCT_SUCCESS = '[Auth] AddProduct Success',
     ADD_PRODUCT_FAILURE = '[Auth] AddProduct Failure',
+    DELETE_PRODUCT = '[Auth] DeleteProduct',
+    DELETE_PRODUCT_SUCCESS = '[Auth] DeleteProduct Success',
+    DELETE_PRODUCT_FAILURE = '[Auth] DeleteProduct Failure',
 }
 
 export class GetProducts implements Action {
@@ -30,7 +33,18 @@ export class GetProductsFailure implements Action {
     readonly type = AuthActionTypes.GET_PRODUCTS_FAILURE;
     constructor(public payload: any) { }
 }
-
+export class DeleteProduct implements Action {
+    readonly type = AuthActionTypes.DELETE_PRODUCT;
+    constructor(public payload: any) { }
+}
+export class DeleteProductSuccess implements Action {
+    readonly type = AuthActionTypes.DELETE_PRODUCT_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class DeleteProductFailure implements Action {
+    readonly type = AuthActionTypes.DELETE_PRODUCT_FAILURE;
+    constructor(public payload: any) { }
+}
 export class AddProduct implements Action {
     readonly type = AuthActionTypes.ADD_PRODUCT;
     constructor(public payload: any) { }
@@ -92,4 +106,10 @@ export type All =
     | GetProductsSuccess
     | GetProductsFailure
     | LogOut
-    | GetStatus;
+    | GetStatus
+    | AddProduct
+    | AddProductSuccess
+    | AddProductFailure
+    | DeleteProduct
+    | DeleteProductSuccess
+    | DeleteProductFailure

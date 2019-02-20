@@ -20,7 +20,10 @@ import {
     AddProductFailure,
     GetProducts,
     GetProductsSuccess,
-    GetProductsFailure
+    GetProductsFailure,
+    DeleteProduct,
+    DeleteProductSuccess,
+    DeleteProductFailure,
 } from '../actions/auth.actions';
 
 
@@ -75,8 +78,8 @@ export class AuthEffects {
             console.log(33, payload);
             return this.authService.AddProduct(payload)    //   .pipe(first())
                 .map((product) => {
-                    console.log(37, product);
-                    return new AddProductSuccess({ product: product });
+                    console.log(78, product);
+                    return new AddProductSuccess(product);
                 })
                 .catch((error) => {
                     console.log(41, error);
@@ -98,7 +101,35 @@ export class AuthEffects {
     AddProductFailure: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.ADD_PRODUCT_FAILURE)
     );
+    
+    
+    @Effect()
+    DeleteProduct: Observable<any> = this.actions
+        .ofType(AuthActionTypes.DELETE_PRODUCT)
+        .map((action: DeleteProduct) => action.payload)
+        .switchMap(payload => {
+            return this.authService.DeleteProduct(payload)    //   .pipe(first())
+                .map((product) => {
+                    return new DeleteProductSuccess(product);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new DeleteProductFailure({ error: error }));
+                });
+        });
 
+
+    @Effect({ dispatch: false })
+    DeleteProductSuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.DELETE_PRODUCT_SUCCESS),
+        tap((product) => {
+        })
+    );
+
+    @Effect({ dispatch: false })
+    DeleteProductFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.DELETE_PRODUCT_FAILURE)
+    );
 
 
     @Effect()

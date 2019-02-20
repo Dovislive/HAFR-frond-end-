@@ -14,6 +14,9 @@ import { AuthEffects } from './store/effects/auth.effects';
 import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './_guards';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { SettingsComponent } from './components/settings/settings.component';
 //import { ProfileSettingsComponent } from './components/settings/components/profile-settings/profile-settings.component';
 import { AuthenticationService, UserService } from './_services';
@@ -32,6 +35,7 @@ import { ProductsComponent } from './components/products/products.component';
     SettingsComponent,
 //    ComponentProductsComponent,
     ProductsComponent,
+    
 //    ProfileSettingsComponent,
   ],
   imports: [
@@ -42,6 +46,10 @@ import { ProductsComponent } from './components/products/products.component';
     EffectsModule.forRoot([AuthEffects]),
     ReactiveFormsModule,
     routing,
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: [
@@ -52,3 +60,4 @@ import { ProductsComponent } from './components/products/products.component';
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+export class AppBootstrapModule {}

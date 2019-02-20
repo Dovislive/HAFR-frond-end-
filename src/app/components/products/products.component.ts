@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { AppState, selectAuthState } from '../../store/app.states';
-import { GetProducts, AddProduct } from '../../store/actions/auth.actions';
+import { GetProducts, AddProduct, DeleteProduct } from '../../store/actions/auth.actions';
 
 import { UserService } from '../../_services';
 
@@ -36,8 +36,10 @@ export class ProductsComponent implements OnInit {
       prize: ['', Validators.required],
     });
     this.getState.subscribe((state) => {
-      console.log(228, state);
       this.products = state.products;
+      if(this.products && this.products.length && state.product){
+          this.products.unshift(state.product);
+        }
     });
     this.store.dispatch(new GetProducts('get'));
   }
@@ -52,5 +54,8 @@ export class ProductsComponent implements OnInit {
     console.log(34, payload);
     this.store.dispatch(new AddProduct(payload));
   }
-
+  public deleteProduct(id) {
+    this.store.dispatch(new DeleteProduct(id));
+      console.log(57, id)
+  }
 }

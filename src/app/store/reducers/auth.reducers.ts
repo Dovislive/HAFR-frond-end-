@@ -8,6 +8,7 @@ export interface State {
     // if authenticated, there should be a user object
     user: User | null;
     products: any;
+    product: any;
     // error message
     errorMessage: string | null;
 }
@@ -16,7 +17,8 @@ export const initialState: State = {
     isAuthenticated: false,
     user: null,
     products: null,
-    errorMessage: null
+    errorMessage: null,
+    product: null,
 };
 
 export function reducer(state = initialState, action: All): State {
@@ -66,6 +68,13 @@ export function reducer(state = initialState, action: All): State {
         case AuthActionTypes.GET_PRODUCTS_FAILURE: {
             return {
                 ...state,
+                errorMessage: 'That email is already in use.'
+            };
+        }
+        case AuthActionTypes.ADD_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                product: action.payload,
                 errorMessage: 'That email is already in use.'
             };
         }

@@ -27,21 +27,11 @@ export class AuthenticationService {
     );
   }
   public AddProduct(params) {
-      console.log(30, params);
     return this.http.post<any>('http://localhost:8000/products', { name: params.name, img: params.img, descr: params.descr, prize: params.prize })
-      .map(product => {
-        console.log(34,product);
-    })
-//      .pipe(
-//        map((user) => {
-//            console.log(35, user);
-//          return user;
-//        }),
-//    );
+      .map(product => product)
   }
 
   public getProducts(params) {
-    // console.log(14, this.http.post<any>(environment.backUrl + '/login', { email, password }).pipe());
     return this.http.get<any>('http://localhost:8000/products')
       .pipe(
         map((products) => {
@@ -49,7 +39,15 @@ export class AuthenticationService {
         }),
     );
   }
-
+  public DeleteProduct(params) {
+    console.log(34, params);
+    return this.http.delete<any>('http://localhost:8000/products/' + params)
+      .pipe(
+        map((products) => {
+          return products;
+        }),
+    );
+  }
 
   public logout() {
     // remove user from local storage to log user out
