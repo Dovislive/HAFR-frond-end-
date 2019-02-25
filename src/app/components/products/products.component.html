@@ -1,30 +1,128 @@
 <div class="settings">
-  <app-header [title]="title">
-  </app-header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Admin side</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Главная<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Добавление товара</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-collapse"
+                href="#"
+                id="hasSubItems"
+                data-toggle="collapse"
+                data-target="#collapseSubItems2"
+                aria-controls="collapseSubItems2"
+                aria-expanded="false"
+              >Item 2</a>
+              <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="nav-link-text">Item 2.1</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="nav-link-text">Item 2.2</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Item 3</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-collapse"
+                href="#"
+                id="hasSubItems"
+                data-toggle="collapse"
+                data-target="#collapseSubItems4"
+                aria-controls="collapseSubItems4"
+                aria-expanded="false"
+              >Item 4</a>
+              <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="nav-link-text">Item 4.1</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="nav-link-text">Item 4.2</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="nav-link-text">Item 4.2</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Item 5</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  <!-- <app-header [title]="title">
+    
+  </app-header> -->
   <div class="content" [ngClass]="{'content_header-title' : title }">
     <div class="settings__notification" [ngClass]="{'active': success}">Profile updated successfully</div>
     <div class="container">
-      <form [formGroup]="productsForm" (ngSubmit)="onSubmit()" class="auth__form">
+         
+      <form [formGroup]="productsForm" class="auth__form">
         <input type="text" name="name" formControlName="name" class="auth__input" placeholder="Название продукта" />
         <input type="text" name="img" formControlName="img" class="auth__input" placeholder="Фото продукта" />
         <input type="text" name="descr" formControlName="descr" class="auth__input" placeholder="Описание продукта" />
         <input type="text" name="prize" formControlName="prize" class="auth__input" placeholder="Цена продукта" />
-        <button class="button button_arrow button_green">Сохранить</button>
+        <button class="button button_arrow button_green" (click)="onSubmit()">Сохранить</button>
+        <button class="button button_arrow button_green" (click)="putProduct()" *ngIf="create">Обновить</button>
       </form>
       <div *ngFor="let product of products">
-          <div class="row">
-              <div class="col-sm-3 product-card">product name : {{product.name}}</div>
-               <div class="col-sm-3 product-card">product img : {{product.img}}</div>
-               <div class="col-sm-3 product-card">product descr : {{product.descr}}</div>
-               <div class="col-sm-3 product-card">product prize : {{product.prize}}</div>
-          </div>     
-               <br>
-               <div class="row justify-content-center">
-               <button class="col-sm-3 button-delete" (click)="deleteProduct(product._id)">DELETE</button>
+          <div class="row cards" (click)="insertProduct(product)">
+              <div class="col-sm-2 product-card"><span class="product-title">product name</span><br>{{product.name}}</div>
+               <div class="col-sm-3 product-card"><span class="product-title">product img</span><br>{{product.img}}</div>
+               <div class="col-sm-3 product-card"><span class="product-title">product descr</span><br>{{product.descr}}</div>
+               <div class="col-sm-2 product-card"><span class="product-title">product prize</span><br>{{product.prize}}</div>
+               
+               
+               <button class="col-sm-1 button-delete" (click)="deleteProduct(product._id)">DELETE</button>
               </div>
-          
+              <!-- </div>     -->
       </div>
     </div>
   </div>
-
 </div>
+<script>
+$(document).ready(function() {
+  $('.nav-link-collapse').on('click', function() {
+    $('.nav-link-collapse').not(this).removeClass('nav-link-show');
+    $(this).toggleClass('nav-link-show');
+  });
+});
+</script>
+<footer class="footer">
+    <div class="container">
+        <div class="text-center">
+            <span>Powered by<a> Old & Kokold</a>, 2019</span>
+        </div>
+    </div>
+  </footer>

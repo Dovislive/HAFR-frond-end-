@@ -24,6 +24,9 @@ import {
     DeleteProduct,
     DeleteProductSuccess,
     DeleteProductFailure,
+    PutProduct,
+    PutProductSuccess,
+    PutProductFailure,
 } from '../actions/auth.actions';
 
 
@@ -35,7 +38,7 @@ export class AuthEffects {
         private authService: AuthenticationService,
         private router: Router,
     ) { }
-
+    // Login    
     @Effect()
     LogIn: Observable<any> = this.actions
         .ofType(AuthActionTypes.LOGIN)
@@ -69,7 +72,7 @@ export class AuthEffects {
     );
 
 
-
+    // AddProduct
     @Effect()
     AddProduct: Observable<any> = this.actions
         .ofType(AuthActionTypes.ADD_PRODUCT)
@@ -102,7 +105,7 @@ export class AuthEffects {
         ofType(AuthActionTypes.ADD_PRODUCT_FAILURE)
     );
     
-    
+    // DeleteProduct
     @Effect()
     DeleteProduct: Observable<any> = this.actions
         .ofType(AuthActionTypes.DELETE_PRODUCT)
@@ -130,8 +133,36 @@ export class AuthEffects {
     DeleteProductFailure: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.DELETE_PRODUCT_FAILURE)
     );
+    // PutProduct
+    @Effect()
+    PutProduct: Observable<any> = this.actions
+        .ofType(AuthActionTypes.PUT_PRODUCT)
+        .map((action: PutProduct) => action.payload)
+        .switchMap(payload => {
+            return this.authService.PutProduct(payload)    //   .pipe(first())
+                .map((product) => {
+                    return new PutProductSuccess(product);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new PutProductFailure({ error: error }));
+                });
+        });
 
 
+    @Effect({ dispatch: false })
+    PutProductSuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.PUT_PRODUCT_SUCCESS),
+        tap((product) => {
+        })
+    );
+
+    @Effect({ dispatch: false })
+    PutProductFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.PUT_PRODUCT_FAILURE)
+    );
+
+    // GetProducts 
     @Effect()
     GetProducts: Observable<any> = this.actions
         .ofType(AuthActionTypes.GET_PRODUCTS)

@@ -11,6 +11,12 @@ export interface State {
     product: any;
     // error message
     errorMessage: string | null;
+    delete_product_id: any;
+    put_product: any;
+    isGet: boolean,
+    isCreate: boolean,
+    isDelete: boolean,
+    isUpdate: boolean,
 }
 
 export const initialState: State = {
@@ -19,6 +25,12 @@ export const initialState: State = {
     products: null,
     errorMessage: null,
     product: null,
+    delete_product_id: null,
+    put_product: null,
+    isGet: false,
+    isCreate: false,
+    isDelete: false,
+    isUpdate: false,
 };
 
 export function reducer(state = initialState, action: All): State {
@@ -62,10 +74,50 @@ export function reducer(state = initialState, action: All): State {
                 ...state,
                 isAuthenticated: true,
                 products: action.payload,
-                errorMessage: null
+                errorMessage: null,
+                isGet: true,
+                isCreate: false,
+                isDelete: false,
+                isUpdate: false,
             };
         }
         case AuthActionTypes.GET_PRODUCTS_FAILURE: {
+            return {
+                ...state,
+                errorMessage: 'That email is already in use.'
+            };
+        }
+        case AuthActionTypes.DELETE_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                isAuthenticated: true,
+                delete_product_id: action.payload._id,
+                errorMessage: null,
+                isGet: false,
+                isCreate: false,
+                isDelete: true,
+                isUpdate: false,
+            };
+        }
+        case AuthActionTypes.DELETE_PRODUCT_FAILURE: {
+            return {
+                ...state,
+                errorMessage: 'That email is already in use.'
+            };
+        }
+        case AuthActionTypes.PUT_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                isAuthenticated: true,
+                put_product: action.payload,
+                errorMessage: null,
+                isGet: false,
+                isCreate: false,
+                isDelete: false,
+                isUpdate: true,
+            };
+        }
+        case AuthActionTypes.PUT_PRODUCT_FAILURE: {
             return {
                 ...state,
                 errorMessage: 'That email is already in use.'
@@ -75,7 +127,11 @@ export function reducer(state = initialState, action: All): State {
             return {
                 ...state,
                 product: action.payload,
-                errorMessage: 'That email is already in use.'
+                errorMessage: 'That email is already in use.',
+                isGet: false,
+                isCreate: true,
+                isDelete: false,
+                isUpdate: false,
             };
         }
         case AuthActionTypes.LOGOUT: {

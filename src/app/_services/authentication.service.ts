@@ -48,6 +48,16 @@ export class AuthenticationService {
         }),
     );
   }
+  public PutProduct(params) {
+    console.log(52, params);
+    return this.http.put<any>('http://localhost:8000/products/' + params._id, { name: params.name, img: params.img, descr: params.descr, prize: params.prize })
+      .pipe(
+        map((products) => {
+          console.log(56, products);
+          return products;
+        }),
+    );
+  }
 
   public logout() {
     // remove user from local storage to log user out
