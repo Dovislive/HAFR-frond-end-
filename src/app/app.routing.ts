@@ -8,7 +8,8 @@ import { ResetpwdComponent } from './components/auth/resetpwd/resetpwd.component
 import { HeaderComponent } from './components/layout/header/header.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ProductsComponent } from './components/products/products.component';
-//import { ProfileSettingsComponent } from './components/settings/components/profile-settings/profile-settings.component';
+import { CategoryComponent } from './components/category/category.component';
+
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     },
     { path: 'products', component: ProductsComponent },
     // otherwise redirect to home
+    {path: 'category', component: CategoryComponent},
     { path: '**', redirectTo: 'login' },
 ];
 

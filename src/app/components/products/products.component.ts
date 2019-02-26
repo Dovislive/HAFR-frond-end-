@@ -39,22 +39,17 @@ export class ProductsComponent implements OnInit {
     });
     this.getState.subscribe((state) => {
       this.products = state.products;
-      console.log(86, state);
-      console.log(87, this.products);
       if(this.products && state.product && state.isCreate){
-        // console.log(42, this.products);
           this.products.unshift(state.product);
+          this.create = false;
         }
+        
       if(this.products && this.products.length && state.delete_product_id && state.isDelete){
-          // console.log(43, state.products);
           this.products.splice(this.products.findIndex(item => item._id === state.delete_product_id), 1);
         }
       if(this.products && this.products.length && state.put_product && state.isUpdate){
 
          let updateItem = this.products.findIndex(item => item._id === state.put_product._id);
-        //  console.log(51, updateItem);
-        //  console.log(57, this.products[updateItem])
-        //  console.log(58, state.put_product)
          this.products[updateItem] = state.put_product;
         }  
     });
@@ -69,7 +64,6 @@ export class ProductsComponent implements OnInit {
       descr: this.productsForm.value.descr,
       prize: this.productsForm.value.prize
     };
-    console.log(34, payload);
     this.store.dispatch(new AddProduct(payload));
   }
 
@@ -81,7 +75,6 @@ export class ProductsComponent implements OnInit {
       descr: this.productsForm.value.descr,
       prize: this.productsForm.value.prize
     };
-    console.log(71, payload)
 
     this.store.dispatch(new PutProduct(payload));
     
@@ -89,8 +82,6 @@ export class ProductsComponent implements OnInit {
 
   public deleteProduct(id) {
     this.store.dispatch(new DeleteProduct(id));
-
-      console.log(57, id)
   }
   public insertProduct(product) {
     this.create = true;
@@ -101,8 +92,10 @@ export class ProductsComponent implements OnInit {
       descr: product.descr,
       prize: product.prize
   });
-    console.log(85, this.productsForm.value);
   }
 }
+
+
+
 
 

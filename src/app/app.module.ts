@@ -18,11 +18,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SettingsComponent } from './components/settings/settings.component';
-//import { ProfileSettingsComponent } from './components/settings/components/profile-settings/profile-settings.component';
 import { AuthenticationService, UserService } from './_services';
 import { reducers } from './store/app.states';
-//import { ComponentProductsComponent } from './components/component-products/component-products.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 @NgModule({
@@ -33,10 +32,8 @@ import { ProductsComponent } from './components/products/products.component';
     ResetpwdComponent,
     HeaderComponent,
     SettingsComponent,
-//    ComponentProductsComponent,
     ProductsComponent,
-    
-//    ProfileSettingsComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

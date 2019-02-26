@@ -1,0 +1,107 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    padding-top: 4.5rem;
+    margin-bottom: 4.5rem;
+  }
+  
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  background-color: #ccc;
+  }
+  
+  .nav-link:hover {
+  transition: all 0.4s;
+  }
+  
+  .nav-link-collapse:after {
+  float: right;
+  content: '\f067';
+  font-family: 'FontAwesome';
+  }
+  
+  .nav-link-show:after {
+  float: right;
+  content: '\f068';
+  font-family: 'FontAwesome';
+  }
+  
+  .nav-item ul.nav-second-level {
+  padding-left: 0;
+  }
+  
+  .nav-item ul.nav-second-level > .nav-item {
+  padding-left: 20px;
+  }
+  
+  @media (min-width: 992px) {
+  .sidenav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: calc(100vh - 3.5rem);
+    margin-top: 3.5rem;
+    background: #343a40;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-expand-lg .sidenav {
+    flex-direction: column;
+  }
+  
+  .content-wrapper {
+    margin-left: 230px;
+  }
+  
+  .footer {
+    width: calc(100% - 230px);
+    margin-left: 230px;
+    position: fixed;
+  }
+  }
+  
+  
+  
+  
+  .settings {
+    &__notification {
+      color: white;
+      width: 100%;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #63c379;
+      height: 0;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+      &.active {
+        height: 46px;
+      }
+    }
+  }
+  .button-delete {
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+  .product-card {
+    font-size: 24px;
+  }
+  .product-title {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 32px;
+  }
+  .cards{
+      border: solid 2px #343a40;
+      margin-bottom: 4%;
+      padding: 5px 0px 15px 0px;
+  }
