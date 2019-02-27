@@ -27,6 +27,18 @@ import {
     PutProduct,
     PutProductSuccess,
     PutProductFailure,
+    AddCategory,
+    AddCategorySuccess,
+    AddCategoryFailure,
+    GetCategories,
+    GetCategoriesSuccess,
+    GetCategoriesFailure,
+    DeleteCategory,
+    DeleteCategorySuccess,
+    DeleteCategoryFailure,
+    PutCategory,
+    PutCategorySuccess,
+    PutCategoryFailure,
 } from '../actions/auth.actions';
 
 
@@ -95,8 +107,6 @@ export class AuthEffects {
     AddProductSuccess: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.ADD_PRODUCT_SUCCESS),
         tap((product) => {
-            // localStorage.setItem('token', product.payload.token);
-            // this.router.navigateByUrl('/');
         })
     );
 
@@ -193,6 +203,127 @@ export class AuthEffects {
     @Effect({ dispatch: false })
     GetProductsFailure: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.ADD_PRODUCT_FAILURE)
+    );
+
+    //Category
+    @Effect()
+    AddCategory: Observable<any> = this.actions
+        .ofType(AuthActionTypes.ADD_CATEGORY)
+        .map((action: AddCategory) => action.payload)
+        .switchMap(payload => {
+            console.log(33, payload);
+            return this.authService.AddCategory(payload)    //   .pipe(first())
+                .map((category) => {
+                    
+                    return new AddCategorySuccess(category);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new AddCategoryFailure({ error: error }));
+                });
+        });
+
+
+    @Effect({ dispatch: false })
+    AddCategorySuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_CATEGORY_SUCCESS),
+        tap((category) => {
+        })
+    );
+
+    @Effect({ dispatch: false })
+    AddCategoryFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_CATEGORY_FAILURE)
+    );
+    
+    // DeleteCategory
+    @Effect()
+    DeleteCategory: Observable<any> = this.actions
+        .ofType(AuthActionTypes.DELETE_CATEGORY)
+        .map((action: DeleteCategory) => action.payload)
+        .switchMap(payload => {
+            return this.authService.DeleteCategory(payload)    //   .pipe(first())
+                .map((category) => {
+                    return new DeleteCategorySuccess(category);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new DeleteCategoryFailure({ error: error }));
+                });
+        });
+
+
+    @Effect({ dispatch: false })
+    DeleteCategorySuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.DELETE_CATEGORY_SUCCESS),
+        tap((category) => {
+        })
+    );
+
+    @Effect({ dispatch: false })
+    DeleteCategoryFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.DELETE_CATEGORY_FAILURE)
+    );
+    // PutCategory
+    @Effect()
+    PutCategory: Observable<any> = this.actions
+        .ofType(AuthActionTypes.PUT_CATEGORY)
+        .map((action: PutCategory) => action.payload)
+        .switchMap(payload => {
+            return this.authService.PutCategory(payload)    //   .pipe(first())
+                .map((category) => {
+                    return new PutCategorySuccess(category);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new PutCategoryFailure({ error: error }));
+                });
+        });
+
+
+    @Effect({ dispatch: false })
+    PutCategorySuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.PUT_CATEGORY_SUCCESS),
+        tap((Category) => {
+        })
+    );
+
+    @Effect({ dispatch: false })
+    PutCategoryFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.PUT_CATEGORY_FAILURE)
+    );
+
+    // GetCategory
+    @Effect()
+    GetCategories: Observable<any> = this.actions
+        .ofType(AuthActionTypes.GET_CATEGORIES)
+        .map((action: GetCategories) => action.payload)
+        .switchMap(payload => {
+            console.log(33, payload);
+            return this.authService.getCategories(payload)    //   .pipe(first())
+                .map((category) => {
+                    // console.log(37, category);
+                    return new GetCategoriesSuccess(category);
+                })
+                .catch((error) => {
+                    console.log(41, error);
+                    return Observable.of(new GetCategoriesFailure({ error: error }));
+                });
+        });
+
+
+    @Effect({ dispatch: false })
+    GetCategorySuccess: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_CATEGORY_SUCCESS),
+        tap((category) => {
+            // localStorage.setItem('token', product.payload.token);
+            // this.router.navigateByUrl('/');
+        })
+    );
+
+    @Effect({ dispatch: false })
+    GetCategoryFailure: Observable<any> = this.actions.pipe(
+        ofType(AuthActionTypes.ADD_CATEGORY_FAILURE)
     );
 
 }

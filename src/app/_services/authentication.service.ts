@@ -26,6 +26,7 @@ export class AuthenticationService {
         }),
     );
   }
+  //product
   public AddProduct(params) {
     return this.http.post<any>('http://localhost:8000/products', { name: params.name, img: params.img, descr: params.descr, prize: params.prize })
       .map(product => product)
@@ -55,6 +56,38 @@ export class AuthenticationService {
         map((products) => {
           console.log(56, products);
           return products;
+        }),
+    );
+  }
+  //category
+  public AddCategory(params) {
+    return this.http.post<any>('http://localhost:8000/category', { name: params.name, img: params.img })
+      .map(category => category)
+  }
+
+  public getCategories(params) {
+    return this.http.get<any>('http://localhost:8000/category')
+      .pipe(
+        map((categories) => {
+          return categories;
+        }),
+    );
+  }
+  public DeleteCategory(params) {
+    console.log(34, params);
+    return this.http.delete<any>('http://localhost:8000/category/' + params)
+      .pipe(
+        map((categories) => {
+          return categories;
+        }),
+    );
+  }
+  public PutCategory(params) {
+    console.log(52, params);
+    return this.http.put<any>('http://localhost:8000/category/' + params._id, { name: params.name, img: params.img })
+      .pipe(
+        map((categories) => {
+          return categories;
         }),
     );
   }

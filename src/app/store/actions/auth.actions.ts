@@ -22,6 +22,18 @@ export enum AuthActionTypes {
     PUT_PRODUCT = '[Auth] PutProduct',
     PUT_PRODUCT_SUCCESS = '[Auth] PutProduct Success',
     PUT_PRODUCT_FAILURE = '[Auth] PutProduct Failure',
+    GET_CATEGORIES = '[Auth] GetCategory',
+    GET_CATEGORIES_SUCCESS = '[Auth] GetCategory Success',
+    GET_CATEGORIES_FAILURE = '[Auth] GetCategory Failure',
+    ADD_CATEGORY = '[Auth] AddCategory',
+    ADD_CATEGORY_SUCCESS = '[Auth] AddCategory Success',
+    ADD_CATEGORY_FAILURE = '[Auth] AddCategory Failure',
+    DELETE_CATEGORY = '[Auth] DeleteCategory',
+    DELETE_CATEGORY_SUCCESS = '[Auth] DeleteCategory Success',
+    DELETE_CATEGORY_FAILURE = '[Auth] DeleteCategory Failure',
+    PUT_CATEGORY = '[Auth] PutCategory',
+    PUT_CATEGORY_SUCCESS = '[Auth] PutCategory Success',
+    PUT_CATEGORY_FAILURE = '[Auth] PutCategory Failure',
 }
 
 export class GetProducts implements Action {
@@ -72,6 +84,54 @@ export class PutProductFailure implements Action {
     readonly type = AuthActionTypes.PUT_PRODUCT_FAILURE;
     constructor(public payload: any) { }
 }
+export class GetCategories implements Action {
+    readonly type = AuthActionTypes.GET_CATEGORIES;
+    constructor(public payload: any) { }
+}
+export class GetCategoriesSuccess implements Action {
+    readonly type = AuthActionTypes.GET_CATEGORIES_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class GetCategoriesFailure implements Action {
+    readonly type = AuthActionTypes.GET_CATEGORIES_FAILURE;
+    constructor(public payload: any) { }
+}
+export class DeleteCategory implements Action {
+    readonly type = AuthActionTypes.DELETE_CATEGORY;
+    constructor(public payload: any) { }
+}
+export class DeleteCategorySuccess implements Action {
+    readonly type = AuthActionTypes.DELETE_CATEGORY_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class DeleteCategoryFailure implements Action {
+    readonly type = AuthActionTypes.DELETE_CATEGORY_FAILURE;
+    constructor(public payload: any) { }
+}
+export class AddCategory implements Action {
+    readonly type = AuthActionTypes.ADD_CATEGORY;
+    constructor(public payload: any) { }
+}
+export class AddCategorySuccess implements Action {
+    readonly type = AuthActionTypes.ADD_CATEGORY_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class AddCategoryFailure implements Action {
+    readonly type = AuthActionTypes.ADD_CATEGORY_FAILURE;
+    constructor(public payload: any) { }
+}
+export class PutCategory implements Action {
+    readonly type = AuthActionTypes.PUT_CATEGORY;
+    constructor(public payload: any) { }
+}
+export class PutCategorySuccess implements Action {
+    readonly type = AuthActionTypes.PUT_CATEGORY_SUCCESS;
+    constructor(public payload: any) { }
+}
+export class PutCategoryFailure implements Action {
+    readonly type = AuthActionTypes.PUT_CATEGORY_FAILURE;
+    constructor(public payload: any) { }
+}
 export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGIN;
     constructor(public payload: any) { }
@@ -120,6 +180,9 @@ export type All =
     | GetProducts
     | GetProductsSuccess
     | GetProductsFailure
+    | GetCategories
+    | GetCategoriesSuccess
+    | GetCategoriesFailure
     | LogOut
     | GetStatus
     | AddProduct
@@ -131,3 +194,12 @@ export type All =
     | PutProduct
     | PutProductSuccess
     | PutProductFailure
+    | AddCategory
+    | AddCategorySuccess
+    | AddCategoryFailure
+    | DeleteCategory
+    | DeleteCategorySuccess
+    | DeleteCategoryFailure
+    | PutCategory
+    | PutCategorySuccess
+    | PutCategoryFailure

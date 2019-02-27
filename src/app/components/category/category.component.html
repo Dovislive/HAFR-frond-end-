@@ -85,18 +85,18 @@
   <div class="settings__notification" [ngClass]="{'active': success}">Profile updated successfully</div>
   <div class="container">
        
-    <form [formGroup]="productsForm" class="auth__form">
-      <input type="text" name="name" formControlName="name" class="auth__input" placeholder="Название продукта" />
-      <input type="text" name="img" formControlName="img" class="auth__input" placeholder="Фото продукта" />
+    <form [formGroup]="categoryForm" class="auth__form">
+      <input type="text" name="name" formControlName="name" class="auth__input" placeholder="Название категории" />
+      <input type="text" name="img" formControlName="img" class="auth__input" placeholder="Фото категории" />
       <button class="button button_arrow button_green" (click)="onSubmit()">Сохранить</button>
-      <button class="button button_arrow button_green" (click)="putProduct()" *ngIf="create">Обновить</button>
+      <button class="button button_arrow button_green" (click)="putCategory()" *ngIf="create">Обновить</button>
     </form>
-    <div *ngFor="let product of products">
-        <div class="row cards" (click)="insertProduct(product)">
-            <div class="col-sm-4 product-card"><span class="product-title">product name</span><br>{{product.name}}</div>
-             <div class="col-sm-4 product-card"><span class="product-title">product img</span><br>{{product.img}}</div>
-             <button class="col-sm-4 button-delete" (click)="deleteProduct(product._id)">DELETE</button>
-            </div>
+    <div *ngFor="let category of categories">
+        <div class="row cards" (click)="insertCategory(category)">
+            <div class="col-sm-4 product-card"><span class="product-title">category name</span><br>{{category.name}}</div>
+             <div class="col-sm-4 product-card"><span class="product-title">category img</span><br>{{category.img}}</div>
+             <button class="col-sm-4 button-delete" (click)="deleteCategory(category._id)">DELETE</button>
+        </div>
     </div>
   </div>
 </div>
